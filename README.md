@@ -4,11 +4,11 @@
 ## Concepts by Domain:
 
 ### A. C/C++ Coding Specific
-1.  [C Overview](https://embeddedworlddevelopers.blogspot.com/p/c-language.html)
-2.  [C++ Overview](https://embeddedworlddevelopers.blogspot.com/p/c-language_12.html)
-3.  [Tenouk's Ultimate C/C++ Tutorials](https://www.tenouk.com/Sitemap.html)
+1.  [C Overview](https://embeddedworlddevelopers.blogspot.com/p/c-language.html) ❌
+2.  [C++ Overview](https://embeddedworlddevelopers.blogspot.com/p/c-language_12.html) ❌
+3.  [Tenouk's Ultimate C/C++ Tutorials](https://www.tenouk.com/Sitemap.html) ❌
 4.  Attributes
-5.  [C/C++ Preprocessor Directives](https://www.tenouk.com/Module10.html)
+5.  [C/C++ Preprocessor Directives](https://www.tenouk.com/Module10.html) ❌
 6.  [C/C++ Type Specifiers](https://www.tenouk.com/Module11.html)
 7.  [Structure Member Alignment, Padding and Data Packing](https://www.geeksforgeeks.org/structure-member-alignment-padding-and-data-packing/)
 8. [Memory Alignment](https://embeddedartistry.com/blog/2017/02/22/generating-aligned-memory/)
@@ -578,3 +578,9 @@
 [OS projects](https://wiki.osdev.org/Projects)
 
 [Embedded Developers World](https://embeddedworlddevelopers.blogspot.com/)
+
+### Emojis
+⬜️
+✔️
+☑️
+❌
