@@ -5,87 +5,102 @@
 
 using namespace std;
 
-enum AirlineName
+namespace Airfee
 {
-    United,
-    Delta,
-    Southwest,
+enum Airline
+{
+    united,
+    delta,
+    southwest,
 };
 
-class ICabin
+enum Cabin
 {
-public:
-    virtual float GetOperatingCost() = 0;
-    virtual float GetOperatingCost(float mile) = 0;
+    economy,
+    premium,
+    business,
 };
 
-class Economy : public ICabin
+class AirlineFeeCalculator
 {
 public:
-
-    virtual float GetOperatingCost(float mile) override
+    virtual float getCost(Cabin c, float miles)=0;
+    static AirlineFeeCalculator* Create(Airline air);
+    virtual ~AirlineFeeCalculator() = default;
+protected:
+    float getOpCost(Cabin c, float miles)
     {
-        return GetOperatingCost();
-    }
-
-    virtual float GetOperatingCost() override
-    {
-        return 0;
-    }
-};
-
-class Premium : public ICabin
-{
-public:
-
-    virtual float GetOperatingCost(float mile) override
-    {
-        return GetOperatingCost();
-    }
-
-    virtual float GetOperatingCost() override
-    {
-        return 25;
-    }
-};
-
-class Business : public ICabin
-{
-public:
-    virtual float GetOperatingCost(float mile) override
-    {
-        return GetOperatingCost() + 0.25 * mile;
-    }
-
-    virtual float GetOperatingCost() override
-    {
-        return 25;
-    }
-};
-
-class CabinFactory
-{
-public:
-    static shared_ptr<ICabin> (string cabinStr)
-    {
-        if (cabinStr == "Economy")
+        float opCost = 0;
+        switch(c)
         {
-            return make_shared<ICabin>()
+            case economy:
+                opCost = 0;
+                break;
+            case premium:
+                opCost = 25.;
+                break;
+            case business:
+                opCost = 50. + 0.25 * miles;
+                break;
         }
+        return opCost;
     }
-private:
-    CabinFactory(){}
 };
 
-class IAirline
+class UnitedCalculator : public AirlineFeeCalculator
 {
 public:
-    IAirline();
-    ~IAirline();
+    static AirlineFeeCalculator* GetInstance()
+    {
+        static UnitedCalculator calc;
+        return &calc;
+    }
 
-    virtual float GetCost() = 0;
+    float getCost(Cabin c, float miles) override
+    {
+        return getOpCost(c, miles) + miles * 0.75;
+    }
+
 private:
-    shared_ptr<ICabin> cabin;
-
+    UnitedCalculator(){}
 };
+
+class DeltaCalculator : public AirlineFeeCalculator
+{
+public:
+    static AirlineFeeCalculator* GetInstance()
+    {
+        static DeltaCalculator calc;
+        return &calc;
+    }
+
+    float getCost(Cabin c, float miles) override
+    {
+        return getOpCost(c, miles) + miles * 0.5;
+    }
+
+private:
+    DeltaCalculator(){}
+};
+
+class SouthwestCalculator : public AirlineFeeCalculator
+{
+public:
+    static AirlineFeeCalculator* GetInstance()
+    {
+        static SouthwestCalculator calc;
+        return &calc;
+    }
+
+    float getCost(Cabin c, float miles) override
+    {
+        return 1. * miles;
+    }
+
+private:
+    
+    SouthwestCalculator(){}
+};
+
+}
 
