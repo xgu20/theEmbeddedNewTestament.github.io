@@ -12,8 +12,8 @@ void *aligned_memory(size_t required, size_t alignment){
 }
 
 void free_aligned(void *p) {
-    void** _p = &p;
-    
+    void** _p = p;
+	printf("Free allocated space from %p\n", (_p[-1]));
     free(_p[-1]);
 }
 
@@ -27,9 +27,9 @@ int main (int argc, char *argv[]) {
 	int alignment = atoi(argv[2]);
 
 	void *aligned_p = aligned_memory(required, alignment);
-        void **_aligned_p = &aligned_p;
+        void **_aligned_p = aligned_p;
 
 	printf("Aligned address: %p  Malloc address: %p\n", aligned_p, _aligned_p[-1]);
-
+	free_aligned(aligned_p);
 	return 0;
 }
