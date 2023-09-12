@@ -5,16 +5,14 @@
 
 using namespace std;
 
-namespace Airfee
-{
-enum Airline
+enum class Airline
 {
     united,
     delta,
     southwest,
 };
 
-enum Cabin
+enum class Cabin
 {
     economy,
     premium,
@@ -28,18 +26,19 @@ public:
     static AirlineFeeCalculator* Create(Airline air);
     virtual ~AirlineFeeCalculator() = default;
 protected:
+    AirlineFeeCalculator() = default;
     float getOpCost(Cabin c, float miles)
     {
         float opCost = 0;
         switch(c)
         {
-            case economy:
+            case Cabin::economy:
                 opCost = 0;
                 break;
-            case premium:
+            case Cabin::premium:
                 opCost = 25.;
                 break;
-            case business:
+            case Cabin::business:
                 opCost = 50. + 0.25 * miles;
                 break;
         }
@@ -102,5 +101,4 @@ private:
     SouthwestCalculator(){}
 };
 
-}
 
